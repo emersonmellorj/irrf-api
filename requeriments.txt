@@ -1,5 +1,6 @@
 asgiref==3.2.9
 beautifulsoup4==4.9.1
+coverage==5.1
 Django==3.0.7
 django-bootstrap4==2.1.1
 django-filter==2.3.0

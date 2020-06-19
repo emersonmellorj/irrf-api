@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% load filters %}
+
+{% block title %}Cálculo de Deduções de IRRF{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Cálculo de descontos de IRRF:</h1>
+    <form method="POST" action="{% url 'api' %}">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button type="submit" class="btn btn-success">Calcular</button>
+        {% endbuttons %}
+    </form>
+
+    {% if mensagem %}
+        <div class="alert alert-success mt-5">{{mensagem|markdown}}</div>
+    {% endif %}
+{% endblock %}

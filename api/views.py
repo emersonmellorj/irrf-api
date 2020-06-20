@@ -1,29 +1,34 @@
 from django.shortcuts import render, redirect, reverse
 from django.views.generic import FormView, TemplateView
 from django.views import View
-from django.http import (HttpResponse, HttpResponseRedirect)
+from django.http import (HttpResponse, HttpResponseRedirect, JsonResponse)
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.template import loader
+from django.urls import reverse_lazy
 from decimal import Decimal
 from .forms import DadosUsuarioForm
+from .serializers import ImpostoRendaSerializer
 
 class IndexView(FormView, TemplateView):
         template_name = 'index.html'
         form_class = DadosUsuarioForm
+        success_url = '/'
 
 
 class IndexAPIView(APIView):
     """
     Class Based View que ira receber os dados, realizar os cálculos e retornar os dados
     """
+
     def post(self, request, format=None, **kwargs):
         data = request.data
         nome = data['nome']
         salario_bruto = round(Decimal(data['salario_bruto']), 2)
-
-        numero_deps = 0
-        if data['numero_deps']:
+        
+        # Se numero de dependentes nao for enviado seto para 0
+        if not data.get('numero_deps'):
+            numero_deps = 0
+        else:
             numero_deps = int(data['numero_deps'])
 
         valor_deps = 0
@@ -58,7 +63,8 @@ class IndexAPIView(APIView):
         }
 
         template_name = 'index.html'
-        content = loader.render_to_string(template_name, context)
+        #content = loader.render_to_string(template_name, context)
+        content = render(request, template_name, context)
         return HttpResponse(content)
         
     

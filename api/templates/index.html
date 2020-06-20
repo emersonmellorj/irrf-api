@@ -7,6 +7,12 @@
 
 {% block content %}
     <h1 class="mb-4">Cálculo de descontos de IRRF:</h1>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Seja bem vindo(a)!</strong> Digite abaixo os dados para calcular o desconto do IRRF.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     <form method="POST" action="{% url 'api' %}">
         {% csrf_token %}
         {% bootstrap_form form %}
@@ -16,6 +22,6 @@
     </form>
 
     {% if mensagem %}
-        <div class="alert alert-success mt-5">{{mensagem|markdown}}</div>
+        <div class="alert alert-success mt-4">{{mensagem|markdown}}</div>
     {% endif %}
 {% endblock %}

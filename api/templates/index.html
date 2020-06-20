@@ -2,26 +2,29 @@
 {% load bootstrap4 %}
 {% load static %}
 {% load filters %}
+{% load fontawesome_5 %}
 
 {% block title %}Cálculo de Deduções de IRRF{% endblock %}
 
 {% block content %}
-    <h1 class="mb-4">Cálculo de descontos de IRRF:</h1>
+    <h1 class="mb-4"><a href="{% url 'index' %}">{% fa5_icon 'comment-dollar' %} Cálculo de descontos de IRRF:</a></h1>
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong>Seja bem vindo(a)!</strong> Digite abaixo os dados para calcular o desconto do IRRF.
+                Não estamos considerando descontos de <strong>INSS</strong> nos cálculos.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <form method="POST" action="{% url 'api' %}">
+    <form method="POST" id="form">
         {% csrf_token %}
         {% bootstrap_form form %}
         {% buttons %}
-            <button type="submit" class="btn btn-success" id="btn-calcular">Calcular</button>
+            <button type="button" class="btn btn-success" id="btn-calcular">
+                {% fa5_icon 'calculator' %} Calcular
+            </button>
         {% endbuttons %}
     </form>
 
-    {% if mensagem %}
-        <div class="alert alert-success mt-4">{{mensagem|markdown}}</div>
-    {% endif %}
+    <div id="resultado"></div>
+
 {% endblock %}

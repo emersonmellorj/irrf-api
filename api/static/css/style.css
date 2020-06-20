@@ -7,6 +7,16 @@ h1{
     padding: 10px;
 }
 
+h1 a{
+    color:khaki;
+    text-decoration: none;
+}
+
+h1 a:hover{
+    color: lemonchiffon;
+    text-decoration: none;
+}
+
 label{
     font-weight: bold;
 }

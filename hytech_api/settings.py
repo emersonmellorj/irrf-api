@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'api',
     'rest_framework',
     'bootstrap4',
+    'fontawesome_5',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

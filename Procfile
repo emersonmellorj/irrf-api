@@ -1,0 +1,1 @@
+web: gunicorn hytech_api.wsgi --log-file -

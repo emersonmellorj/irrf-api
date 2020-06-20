@@ -64,6 +64,8 @@ class IndexAPIView(APIView):
                         "O valor do IR a "
                         f"ser descontado é de <strong>R$ {calculo_irrf}</strong>.<br>"
                         f" Seu salário líquido será de <strong>R$ {salario_liquido}</strong>.",
+            'aliquota': aliquota,
+            'parcela_deduzir': parcela_deduzir
         }
 
         if javascript:

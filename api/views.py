@@ -17,7 +17,6 @@ class IndexAPIView(APIView):
     """
     Class Based View que ira receber os dados, realizar os cálculos e retornar os dados
     """
-
     def post(self, request, format=None, **kwargs):
         data = request.data
         nome = data['nome']
@@ -73,7 +72,6 @@ class IndexAPIView(APIView):
         else:
             return Response(context)
         
-    
     @classmethod
     def get_aliquota(self, salario_bruto):
         """
